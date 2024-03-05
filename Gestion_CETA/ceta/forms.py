@@ -1,4 +1,6 @@
 from django import forms
+
+"""
 from .module_user.models import Role
 
 class RoleForm(forms.ModelForm):
@@ -17,3 +19,4 @@ class RoleForm(forms.ModelForm):
             'name_role': forms.TextInput(attrs={'class':'form-control'}),
             'description_role': forms.TextInput(attrs={'class':'form-control'}),
         }
+"""

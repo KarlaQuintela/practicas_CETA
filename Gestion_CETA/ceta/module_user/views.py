@@ -1,4 +1,5 @@
-# users/views.py
+# module_user/views.py
+"""
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
@@ -13,7 +14,7 @@ class Role_view():
                 form.save()
             return redirect('role')
 
-"""
+
 class Role_view(GenericAPIView):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):

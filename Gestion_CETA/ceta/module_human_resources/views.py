@@ -1,7 +1,13 @@
+# module_human_resources/views.py
+
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category, Worker
-from ceta.forms import WorkerForm, CategoryForm
+#from ceta.forms import WorkerForm, CategoryForm
 
+def list_workers(request):
+    return render(request, 'ceta/templates/human_resources/list_workers.html')
+
+"""
 def worker_get(request, id_w):
     if id_w > 0:
         workers = get_object_or_404(Worker, id_w=id_w)
@@ -36,3 +42,4 @@ def worker_delete(request, id_w):
         worker.delete()
         return redirect('worker_list')
     return render(request, 'ceta/templates/human_resources/worker_confirm_delete.html', {'worker': worker})
+"""
