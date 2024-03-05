@@ -1,6 +1,5 @@
 from django.apps import AppConfig
 
-
-class HumanResourcesConfig(AppConfig):
+class CetaConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'Human_Resources'
+    name = 'ceta'

@@ -1,24 +1,13 @@
-"""
-URL configuration for Gestion_CETA project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #   my paths
-    #path('Human_Resources', include('Human_Resources.urls')),
+  
+    path('ceta/', include('ceta.urls')),  # Ruta principal de la aplicación 
+    path('ceta/module_accounting/', include('ceta.module_accounting.urls')),  # Módulo contabilidad
+    path('ceta/module_contract/', include('ceta.module_contract.urls')),  # Módulo de cliente-contrato
+    path('ceta/module_human_resources/', include('ceta.module_human_resources.urls')),  # Módulo de recursos humanos
+    path('ceta/module_offer/', include('ceta.module_offer.urls')),  # Módulo de oferta    
+    path('ceta/module_user/', include('ceta.module_user.urls')),  # Módulo de usuarios
 ]
