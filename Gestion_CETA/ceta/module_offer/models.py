@@ -16,7 +16,7 @@ class Training(models.Model):
         return self.training_tr
 
 class Service(models.Model):
-    id_serv = models.models.AutoField(primary_key=True)
+    id_serv = models.AutoField(primary_key=True)
     fk_id_ct = models.ForeignKey(Contract, on_delete=models.CASCADE)  
     product_serv = models.CharField(max_length=255)
     manager_serv = models.IntegerField()
