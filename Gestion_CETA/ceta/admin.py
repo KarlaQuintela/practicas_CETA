@@ -1,4 +1,5 @@
 from django.contrib import admin
+from .models import Ceta
 from ceta.module_accounting.models import *
 from ceta.module_contract.models import *
 from ceta.module_human_resources.models import *
@@ -6,6 +7,8 @@ from ceta.module_offer.models import *
 from ceta.module_user.models import *
 
 # Register your models here.
+admin.site.register(Ceta)
+
 admin.site.register(Bill)
 admin.site.register(Receipt)
 admin.site.register(Remuneration)
