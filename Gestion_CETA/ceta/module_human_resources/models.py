@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Category(models.Model):
-    id_cg = models.IntegerField(primary_key=True)
+    id_cg = models.AutoField(primary_key=True)
     name_cg = models.CharField(max_length=255)
     hourly_wage_cg = models.FloatField()
 
