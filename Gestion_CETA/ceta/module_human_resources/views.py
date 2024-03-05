@@ -1,52 +1,38 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category, Worker
+from ceta.forms import WorkerForm, CategoryForm
 
-# Create your views here.
-#Mostrar trabajadores
-def list_workers(request):
-    return render(request,'list_workers.html')  
+def worker_get(request, id_w):
+    if id_w > 0:
+        workers = get_object_or_404(Worker, id_w=id_w)
+    else:
+        workers = Worker.objects.all()
+    return render(request, 'ceta/templates/human_resources/list_workers.html', {'worker': workers})
 
-#CRUD Worker
-class WorkerList(ListView):
-    model = Worker
+def worker_create(request):
+    if request.method == 'POST':
+        form = WorkerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('list_workers')
+    else:
+        form = WorkerForm()
+    return render(request, 'ceta/templates/human_resources/worker_form.html', {'form': form})
 
-class WorkerDetail(DetailView):
-    model = Worker
+def worker_update(request, id_w):
+    worker = get_object_or_404(Worker, id_w=id_w)
+    if request.method == 'POST':
+        form = WorkerForm(request.POST, instance=worker)
+        if form.is_valid():
+            form.save()
+            return redirect('list_workers')
+    else:
+        form = WorkerForm(instance=worker)
+    return render(request, 'ceta/templates/human_resources/worker_form.html', {'form': form})
 
-class WorkerCreate(CreateView):
-    model = Worker
-    fields = '__all__'  # Use all fields from the model
-    success_url = '/workers/'  # Redirect after successful creation
-
-class WorkerUpdate(UpdateView):
-    model = Worker
-    fields = '__all__'
-    success_url = '/workers/'
-
-class WorkerDelete(DeleteView):
-    model = Worker
-    success_url = '/workers/'
-
-#_________________________________________________________________________________
-#CRUD Category
-class CategoryList(ListView):
-    model = Category
-
-class CategoryDetail(DetailView):
-    model = Category
-
-class CategoryCreate(CreateView):
-    model = Category
-    fields = '__all__'
-    success_url = '/categories/'
-
-class CategoryUpdate(UpdateView):
-    model = Category
-    fields = '__all__'
-    success_url = '/categories/'
-
-class CategoryDelete(DeleteView):
-    model = Category
-    success_url = '/categories/'
+def worker_delete(request, id_w):
+    worker = get_object_or_404(Worker, id_w=id_w)
+    if request.method == 'POST':
+        worker.delete()
+        return redirect('worker_list')
+    return render(request, 'ceta/templates/human_resources/worker_confirm_delete.html', {'worker': worker})
