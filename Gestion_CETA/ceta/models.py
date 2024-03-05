@@ -1,6 +1,6 @@
 from django.db import models
-from module_contract.models import Contract
-from module_user.models import User
+from .module_contract.models import Contract
+from .module_user.models import User
 
 # Create your models here.
 

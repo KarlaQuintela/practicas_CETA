@@ -1,6 +1,6 @@
 # module_accounting/models.py
 from django.db import models
-from .module_contract.models import PaymentTerm
+from ceta.module_contract.models import PaymentTerm
 
 class Bill(models.Model):
     id_bill = models.AutoField(primary_key=True)

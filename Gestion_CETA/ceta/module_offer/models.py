@@ -1,6 +1,6 @@
 # module_offer/models.py
 from django.db import models
-from .module_contract.models import Contract
+from ceta.module_contract.models import Contract
 
 class Training(models.Model):
     id_tr = models.AutoField(primary_key=True)

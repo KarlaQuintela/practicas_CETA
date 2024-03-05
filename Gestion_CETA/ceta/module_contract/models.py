@@ -1,6 +1,6 @@
 # module_contract/models.py
 from django.db import models
-from .module_human_resources.models import Worker
+from ceta.module_human_resources.models import Worker
 
 class Client(models.Model):
     id_client = models.AutoField(primary_key=True)
