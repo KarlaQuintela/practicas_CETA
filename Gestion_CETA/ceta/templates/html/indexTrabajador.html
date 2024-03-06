@@ -4,7 +4,13 @@
 <h1>Trabajadores</h1>
 <ul>
     {% for worker in workers %}
-        <li>{{worker.id_w}}: {{worker.name_w}}</li>
+        <li>
+            <a href="{% url 'workerDetail' worker.id_w %}">
+                {{worker.id_w}}: {{worker.name_w}}
+            </a>           
+        </li>
     {% endfor %}
 </ul>
+
+
 {% endblock %} 
