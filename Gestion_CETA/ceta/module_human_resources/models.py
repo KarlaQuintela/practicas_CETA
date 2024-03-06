@@ -7,7 +7,7 @@ class Category(models.Model):
     hourly_wage_cg = models.FloatField()
 
     def __str__(self):
-        return self.name_cg
+        return f"{self.name_cg}, {self.hourly_wage_cg}"
 
 class Worker(models.Model):
     id_w = models.CharField(max_length=11, primary_key=True)

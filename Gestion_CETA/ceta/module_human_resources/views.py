@@ -4,6 +4,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category, Worker
 #from ceta.forms import WorkerForm, CategoryForm
 
+"""
+def index(request):
+    return render(request, "ceta/index.html", {
+        "workers" : 
+    })
+"""
+
 def list_workers(request):
     return render(request, 'ceta/templates/human_resources/list_workers.html')
 
