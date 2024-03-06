@@ -19,6 +19,9 @@ admin.site.register(PaymentTerm)
 admin.site.register(PaymentWorker)
 admin.site.register(Expense)
 
+admin.site.register(Training)
+admin.site.register(Service)
+
 admin.site.register(Category)
 admin.site.register(Worker)
 

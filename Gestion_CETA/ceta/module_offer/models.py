@@ -19,9 +19,7 @@ class Service(models.Model):
     id_serv = models.AutoField(primary_key=True)
     fk_id_ct = models.ForeignKey(Contract, on_delete=models.CASCADE)  
     product_serv = models.CharField(max_length=255)
-    manager_serv = models.IntegerField()
-    duration_serv = models.IntegerField()
-    workers_count = models.IntegerField()
+    duration_serv = models.IntegerField()    
     description_serv = models.CharField(max_length=255)
 
     def __str__(self):
