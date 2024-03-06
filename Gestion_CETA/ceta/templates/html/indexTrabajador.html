@@ -12,5 +12,14 @@
     {% endfor %}
 </ul>
 
+<form action="{% url 'workerCreate' %}" method="post">
+    {% csrf_token %}
+    <select name="category">
+        {% for category in categories %}
+            <option value="{{ category.pk }}">{{ category }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit"> 
+</form>
 
 {% endblock %} 
