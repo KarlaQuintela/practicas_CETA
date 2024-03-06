@@ -1,0 +1,59 @@
+/* Estilos generales */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Estilos del Banner */
+  
+  .banner {
+    background-image: linear-gradient(100deg, #eae9e9, #69b2da20), url('img/banner.jpg');
+    height: 60rem;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .content-banner {
+    max-width: 90rem;
+    margin: 0 auto;
+    padding: 5rem 0;
+    text-align: center;
+  }
+  
+  .mision, .vision {
+    width: 45%;
+  }
+  
+  /* Estilos de las secciones Gestion11 y Financiera */
+  
+  .gestion-section, .financiera-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 2rem 0;
+  }
+  
+  .gestion-img, .financiera-img {
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .gestion-info, .financiera-info {
+    width: 45%;
+  }
+  
+  /* Estilos del Footer */
+  
+  footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: white;
+  }
+  
