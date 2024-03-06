@@ -12,7 +12,9 @@ def index(request):
 """
 
 def list_workers(request):
-    return render(request, 'html/indexTrabajador.html')
+    return render(request, 'html/indexTrabajador.html',{
+        "workers": Worker.objects.all()
+    })
 
 
 def get_worker(request, id_worker):
