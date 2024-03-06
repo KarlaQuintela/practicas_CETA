@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Añadir Tipo de Moneda</title>
+  <link rel="stylesheet" href="css/estilonuevoTipoMoneda.css">
+</head>
+<body>
+
+  <header>
+    <h1>Añadir Tipo de Moneda</h1>
+  </header>
+
+  <section>
+    <form id="formularioTipoMoneda">
+      <label for="nombreMoneda">Nombre:</label>
+      <input type="text" id="nombreMoneda" required>
+
+      <label for="descripcionMoneda">Descripción:</label>
+      <input type="text" id="descripcionMoneda" required>
+
+      <div class="botones">
+        <button type="button" onclick="agregarTipoMoneda()">Añadir Tipo de Moneda</button>
+        <button type="button" onclick="cerrarVentana()">Cancelar</button>
+      </div>
+    </form>
+  </section>
+
+  <footer>
+    
+  </footer>
+
+  <script src="js/datos.js"></script>
+  <script src="js/formularioTipoMoneda.js"></script>
+  
+</body>
+</html>

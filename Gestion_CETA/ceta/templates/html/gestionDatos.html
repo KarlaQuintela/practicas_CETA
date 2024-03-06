@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración</title>
+  <link rel="stylesheet" href="css/estilogestion.css">
+  <script src="js/datos.js"></script>
+  
+</head>
+<body>
+
+  <header>
+    <div class="header-izq">
+      <img src="css/img/images.png" alt="Icono">
+      <h1>Gestion de Datos</h1>
+    </div>
+    <nav class="navegacion">
+      <a href="inicio.html">Inicio</a>
+      <a href="facturas.html">Primera de facturas</a>
+      <a href="formulario.html">Registro de Contrato</a>
+      <a href="factura11.html">Gestion de Finanzas</a>
+    </nav>
+  </header>
+  
+  <nav class="indice">
+    <ul>
+      <li><a href="#clientes">Clientes</a></li>
+      <li><a href="#monedas">Tipos de Moneda</a></li>
+      <li><a href="#contratos">Contrato</a></li>
+      <li><a href="#trabajadores">Trabajadores</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      
+    </ul>
+  </nav>
+
+  <section id="clientes">
+    <h2>Gestión de Clientes</h2>
+
+    <div class="cliente-table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Correo Electrónico</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="clientes-table-body">
+          <!-- Las filas de clientes se agregarán dinámicamente aquí -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="addboton">
+        <button onclick="abrirFormularioCliente()">Añadir</button>
+    </div>
+  </section>
+
+  <section id="monedas">
+    <h2>Gestión de Tipos de Moneda</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="monedas-table-body">
+          <!-- Las filas de monedas se agregarán dinámicamente aquí -->
+        </tbody>
+      </table>
+    </div>
+    <div class="addboton">
+      <button onclick="agregarMoneda()">Añadir</button>
+    </div>
+  </section>
+
+  <section id="contratos">
+    <h2>Gestión de Contratos</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID Contrato</th>
+            <th>Título</th>
+            <th>Tipo</th>
+            <th>Manager</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="contratos-table-body">
+          <!-- Las filas de contratos se agregarán dinámicamente aquí -->
+        </tbody>
+      </table>
+    </div>
+    <div class="addboton">
+      <button onclick="agregarContrato()">Añadir</button>
+    </div>
+  </section>
+   <!-- ... (Tu HTML anterior) ... -->
+
+   <section id="trabajadores">
+    <h2>Gestión de Trabajadores</h2>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Rol</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                    <th>Email</th>
+                    <th>Departamento</th>
+                    <th>Número de Cuenta</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="trabajadores-table-body">
+              <!-- Las filas de trabajadores se agregarán dinámicamente aquí -->
+            </tbody>
+        </table>
+    </div>
+    <div class="addboton">
+      <button onclick="agregarTrabajador()">Añadir</button>
+    </div>
+</section>
+
+<!-- ... (Tu HTML anterior) ... -->
+
+<section id="servicios">
+    <h2>Gestión de Servicios</h2>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Service</th>
+                    <th>ID Contrato</th>
+                    <th>Productos</th>
+                    <th>Duración (horas)</th>
+                    <th>ID Trabajadores</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="servicios-table-body">
+              <!-- Las filas de servicios se agregarán dinámicamente aquí -->
+            </tbody>
+        </table>
+    </div>
+    <div class="addboton">
+      <button onclick="agregarServicio()">Añadir</button>
+    </div>
+</section>
+
+
+
+  <footer>
+    
+  </footer>
+  <script src="js/datos.js"></script>
+  <script>
+    function eliminarCliente(id) {
+      // Lógica para eliminar cliente con ID específico
+      console.log("Eliminar cliente con ID:", id);
+    }
+
+    function verCliente(id) {
+      // Lógica para mostrar detalles del cliente con ID específico
+      window.open('detalleCliente.html', '_blank');
+    }
+
+    function eliminarMoneda(id) {
+      // Lógica para eliminar tipo de moneda con ID específico
+      console.log("Eliminar tipo de moneda con ID:", id);
+    }
+
+    function verMoneda(id) {
+      // Lógica para mostrar detalles del tipo de moneda con ID específico
+      console.log("Ver detalles del tipo de moneda con ID:", id);
+    }
+
+    function eliminarContrato(id) {
+      // Lógica para eliminar contrato con ID específico
+      console.log("Eliminar contrato con ID:", id);
+    }
+
+    function verContrato(id) {
+      // Lógica para mostrar detalles del contrato con ID específico
+      window.open('detalleContrato.html', '_blank');
+    }
+    function verDetallesTrabajador(idTrabajador) {
+    // Abre la ventana emergente con los detalles del trabajador
+    window.open('trabajadorDetalle.html', '_blank');
+  }
+  </script>
+
+</body>
+</html>

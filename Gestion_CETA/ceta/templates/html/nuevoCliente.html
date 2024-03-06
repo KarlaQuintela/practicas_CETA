@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Añadir Cliente</title>
+  <link rel="stylesheet" href="css/estilonuevoCliente.css">
+</head>
+<body>
+
+  <header>
+    <h1>Añadir Cliente</h1>
+  </header>
+
+  <section>
+    <form id="formularioCliente">
+      <label for="nombreCliente">Nombre:</label>
+      <input type="text" id="nombreCliente" required>
+  
+      <label for="id_client">Identificador:</label>
+      <input type="number" id="id_client" required>
+
+      <label for="direccionCliente">Dirección:</label>
+      <input type="text" id="direccionCliente" required>
+
+      <label for="telefono_cliente">Telefono:</label>
+      <input type="tel" id="telefono_cliente" required>
+
+      <label for="correo">Correo:</label>
+      <input type="email" id="correo" required>
+
+      <label for="Descripcion">Descripción:</label>
+      <input type="text" id="Descripcion" required>
+
+      <div class="botones">
+        <button type="button" onclick="agregarCliente()">Añadir Cliente</button>
+        <button type="button" onclick="cerrarVentana()">Cancelar</button>
+      </div>
+    </form>
+  </section>
+
+  <footer>
+    
+  </footer>
+
+  <script src="js/datos.js"></script>
+  <script src="js/formularioCliente.js"></script>
+  
+</body>
+</html>
