@@ -1,9 +1,9 @@
 from django.urls import path
-from .module_human_resources import views
+from .module_human_resources.views import *
 
 urlpatterns = [
-    path('',  views.list_workers, name="indexTrabajador"),
-    path("<int:id_worker>", views.get_worker, name="workerDetail"),
+    path('',  list_workers, name="indexTrabajador"),
+    path("<int:id_worker>", get_worker, name="workerDetail"),
 
     # trabajadores
     path('workers/<int:id>', worker_view.as_view(), name='w_process'),
