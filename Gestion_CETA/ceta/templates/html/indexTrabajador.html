@@ -1,0 +1,10 @@
+{% extends "html/layout.html" %}
+
+{% block body %}
+<h1>Trabajadores</h1>
+<ul>
+    {% for worker in workers %}
+        <li>{{worker.id_w}}: {{worker.name_w}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

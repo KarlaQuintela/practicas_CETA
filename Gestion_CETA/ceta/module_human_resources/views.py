@@ -12,12 +12,14 @@ def index(request):
 """
 
 def list_workers(request):
-    return render(request, 'ceta/templates/human_resources/list_workers.html')
+    return render(request, 'html/indexTrabajador.html')
 
 
 def get_worker(request, id_worker):
     worker = Worker.objects.get(pk=id_worker)
-    return render(request, "human_resources/")
+    return render(request, "html/trabajadorDetalle.html",{
+        "worker": worker
+    })
 """
 def worker_get(request, id_w):
     if id_w > 0:
