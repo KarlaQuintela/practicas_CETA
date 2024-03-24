@@ -66,6 +66,14 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',  # Reemplaza con el origen de tu aplicación Vue.js
 ]
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
 ROOT_URLCONF = 'Gestion_CETA.urls'
 
 TEMPLATES = [
