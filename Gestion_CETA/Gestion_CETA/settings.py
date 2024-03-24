@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    #Api Rest
+    'rest_framework',
+
     #My Apps
     'ceta.apps.CetaConfig',
 
