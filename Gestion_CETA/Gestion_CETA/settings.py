@@ -36,8 +36,7 @@ INSTALLED_APPS = [
     'corsheaders', #django-cors-headers
     
     #My Apps
-    'ceta.apps.CetaConfig',
-    'api.apps.ApiConfig',  
+    'ceta.apps.CetaConfig',      
 ]
 
 MIDDLEWARE = [

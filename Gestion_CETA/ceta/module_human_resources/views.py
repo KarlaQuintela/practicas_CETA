@@ -7,8 +7,11 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.generics import GenericAPIView
 
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Category, Worker
+from .models import Category, Employee
 
+
+
+"""
 class worker_view(GenericAPIView):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
@@ -109,4 +112,4 @@ class worker_view(GenericAPIView):
         worker.delete()
         data = {'message': 'Trabajador eliminado'}
         return JsonResponse(data)
-
+"""

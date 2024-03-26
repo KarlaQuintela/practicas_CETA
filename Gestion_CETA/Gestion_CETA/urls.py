@@ -8,6 +8,5 @@ urlpatterns = router.urls
 urlpatterns += [
     path('admin/', admin.site.urls),  
     path('ceta/', include('ceta.urls')),  # Ruta principal de la aplicación 
-    #path('api/', include('api.urls')),
 ]
  
