@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'rest_framework', #DRF
     'django_filters', #used with DRF
     'corsheaders', #django-cors-headers
+    'rest_framework.authtoken', #enable token authentication
     
     #My Apps
     'ceta.apps.CetaConfig',      
@@ -134,24 +135,27 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 REST_FRAMEWORK = {
-  'EXCEPTION_HANDLER': 'rest_framework_json_api.exceptions.exception_handler',
-  'DEFAULT_PARSER_CLASSES': (
-        'rest_framework_json_api.parsers.JSONParser',        
-  ),
-   'DEFAULT_RENDERER_CLASSES': (
+    'EXCEPTION_HANDLER': 'rest_framework_json_api.exceptions.exception_handler',
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework_json_api.parsers.JSONParser',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_RENDERER_CLASSES': (
         'rest_framework_json_api.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
-  ),
-   'DEFAULT_METADATA_CLASS': 'rest_framework_json_api.metadata.JSONAPIMetadata',
+        'rest_framework.renderers.BrowsableAPIRenderer'
+    ),
+    'DEFAULT_METADATA_CLASS': 'rest_framework_json_api.metadata.JSONAPIMetadata',
     'DEFAULT_FILTER_BACKENDS': (
         'rest_framework_json_api.filters.QueryParameterValidationFilter',
         'rest_framework_json_api.filters.OrderingFilter',
         'rest_framework_json_api.django_filters.DjangoFilterBackend',
-        'rest_framework.filters.SearchFilter',        
-  ),
-  'SEARCH_PARAM': 'filter[search]',
-  'TEST_REQUEST_RENDERER_CLASSES': (
+        'rest_framework.filters.SearchFilter',
+    ),
+    'SEARCH_PARAM': 'filter[search]',
+    'TEST_REQUEST_RENDERER_CLASSES': (
         'rest_framework_json_api.renderers.JSONRenderer',
-  ),
-  'TEST_REQUEST_DEFAULT_FORMAT': 'vnd.api+json'
+    ),
+    'TEST_REQUEST_DEFAULT_FORMAT': 'vnd.api+json'
 }

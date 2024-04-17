@@ -1,8 +1,10 @@
 from django.urls import path
+from rest_framework.authtoken.views import obtain_auth_token
+
 from .module_human_resources.views import *
 
 urlpatterns = [    
-    
+    path('api-token-auth/', obtain_auth_token), #access to token auth
 ]
 
 """ 
