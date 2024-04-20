@@ -3,8 +3,8 @@ from django.db import models
 
 class Category(models.Model):
     id_cg = models.AutoField(primary_key=True)
-    name_cg = models.CharField(max_length=15, unique=True, required = True)
-    hourly_wage_cg = models.FloatField(required = True)
+    name_cg = models.CharField(max_length=15, unique=True)
+    hourly_wage_cg = models.FloatField()
     is_active = models.BooleanField(default=True)
 
     class Meta:
@@ -22,6 +22,7 @@ class Employee(models.Model):
     email_em = models.EmailField(verbose_name="Email", unique=True)
     department_em = models.CharField(max_length=255)
     num_account_em = models.CharField(max_length=16, unique=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.name_em}, {self.id_em}"
