@@ -18,7 +18,7 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ('name', 'hourly_wage')
 
-class Employee(serializers.ModelSerializer):
+class EmployeeSerializer(serializers.ModelSerializer):
     id_em = CharField(require=True)
     category = serializers.PrimaryKeyRelatedField(queryset = Category.objects.all(), many=False)
     name = CharField(require=True)

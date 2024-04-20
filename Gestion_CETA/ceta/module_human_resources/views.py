@@ -1,16 +1,32 @@
 # module_human_resources/views.py
-import json
-from django.core import serializers
-from django.http.response import JsonResponse
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.generics import GenericAPIView
-
-from django.shortcuts import render, get_object_or_404, redirect
+from json import JSONDecodeError
+from django.http import JsonResponse
+from rest_framework.parsers import JSONParser
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import viewsets, status
+from rest_framework.response import Response
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin, UpdateModelMixin, DestroyModelMixin
+ 
+from ceta.serializers import CategorySerializer, EmployeeSerializer
 from .models import Category, Employee
 
 
+class CategoryViewSet(
+        ListModelMixin,
+        RetrieveModelMixin, 
+        CreateModelMixin,
+        UpdateModelMixin, 
+        DestroyModelMixin,
+        viewsets.GenericViewSet      
+        ):
+    permission_classes = (IsAuthenticated,)
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    lookup_field = 'pk'
 
+    def get_queryset(self):        
+        return Category.objects.filter(is_active = True)
+        
 """
 class worker_view(GenericAPIView):
     @method_decorator(csrf_exempt)
