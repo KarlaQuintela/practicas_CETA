@@ -6,6 +6,12 @@ def is_empty(field):
         result = False
     return result
 
+def is_valid_characters_count(field, number):
+    result = False
+    if len(field.strip()) > number:
+        result = True
+    return result
+
 def is_digit(field):
     result = False
     reg = r"^\d+$"  #regex para dígitos

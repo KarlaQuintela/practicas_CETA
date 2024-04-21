@@ -14,11 +14,11 @@ class Category(models.Model):
         return f"{self.name_cg}"
 
 class Employee(models.Model):
-    id_em = models.CharField(max_length=11, primary_key=True)
+    id_em = models.CharField(max_length=11, primary_key=True, unique=True)
     fk_id_cg = models.ForeignKey(Category, on_delete=models.CASCADE)
     name_em = models.CharField(max_length=50, unique=True) 
     address_em = models.CharField(max_length=255)
-    phone_em = models.CharField(max_length=15)
+    phone_em = models.CharField(max_length=15, unique=True)
     email_em = models.EmailField(verbose_name="Email", unique=True)
     department_em = models.CharField(max_length=255)
     num_account_em = models.CharField(max_length=16, unique=True)

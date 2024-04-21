@@ -1,8 +1,8 @@
 # module_contract/serializers.py
 from rest_framework import fields 
 from rest_framework_json_api import serializers
-
-from ceta.exceptions import *
+from collections import OrderedDict
+from Gestion_CETA.utils import validations
 from .models import *
 from ceta.module_human_resources.models import Employee
 
