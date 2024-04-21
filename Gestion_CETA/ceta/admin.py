@@ -19,7 +19,7 @@ admin.site.register(Client)
 admin.site.register(Contract)
 admin.site.register(PaymentTerm)
 admin.site.register(PaymentEmployee)
-admin.site.register(Expense)
+    #admin.site.register(Expense)
 
 #module offer
 admin.site.register(Training)

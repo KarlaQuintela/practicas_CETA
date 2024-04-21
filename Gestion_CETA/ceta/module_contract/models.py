@@ -23,16 +23,14 @@ class Contract(models.Model):
     end_ct = models.DateField()
     resolution_ct = models.DateField()
     description_ct = models.TextField()    
-    staff_count = models.IntegerField()
+                    #staff_count = models.IntegerField()
     type_ct = models.CharField(max_length=50)    
     uni_area_ct = models.CharField(max_length=50)
     work_area_ct = models.CharField(max_length=50)
-    value_ct = models.DecimalField(max_digits=10, decimal_places=2)
+                    #value_ct = models.DecimalField(max_digits=10, decimal_places=2)
     profit_margin = models.DecimalField(max_digits=10, decimal_places=2)
-    net_income = models.DecimalField(max_digits=10, decimal_places=2)
-    currency_ct = models.CharField(max_length=10)
-    proposed_by = models.CharField(max_length=50)
-    approved_by = models.CharField(max_length=50)
+                    #net_income = models.DecimalField(max_digits=10, decimal_places=2)
+    currency_ct = models.CharField(max_length=10)    
     is_current = models.BooleanField(default=True)
 
     def __str__(self):
@@ -44,8 +42,8 @@ class PaymentTerm(models.Model):
     due_month_payterm = models.IntegerField()
     due_year_payterm = models.IntegerField()
     deliver = models.CharField(max_length=50)
-    is_billable = models.BooleanField(default=False)
-
+    is_billed = models.BooleanField(default=False)
+    
     def __str__(self):
         return f"PaymentTerm {self.id_payterm}"
 
@@ -55,11 +53,13 @@ class PaymentEmployee(models.Model):
     fk_id_em = models.ForeignKey(Employee, on_delete=models.CASCADE) 
     hours_pay = models.IntegerField()
     task = models.TextField()
-    amount_pay = models.DecimalField(max_digits=10, decimal_places=2)
+        #amount_pay = models.DecimalField(max_digits=10, decimal_places=2)
+    is_delivered = models.BooleanField(default=False)
 
     def __str__(self):
         return f"PaymentEmployee {self.id_pay}"
 
+"""
 class Expense(models.Model):
     id_expense = models.AutoField(primary_key=True)
     fk_id_payterm = models.ForeignKey(PaymentTerm, on_delete=models.CASCADE) 
@@ -68,3 +68,4 @@ class Expense(models.Model):
 
     def __str__(self):
         return f"Expense {self.id_expense}"
+"""

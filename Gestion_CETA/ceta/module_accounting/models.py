@@ -7,7 +7,7 @@ class Bill(models.Model):
     fk_id_payterm = models.ForeignKey(PaymentTerm, on_delete=models.CASCADE) 
     month_bill = models.IntegerField()
     is_paid = models.BooleanField(default=False)
-
+    
     def __str__(self):
         return f"Bill {self.id_bill}"
 
