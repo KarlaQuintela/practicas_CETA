@@ -2,6 +2,7 @@
 from rest_framework import fields 
 from rest_framework_json_api import serializers
 from collections import OrderedDict
+from datetime import timedelta
 from Gestion_CETA.utils import validations
 from .models import *
 from ceta.module_human_resources.models import Employee
@@ -20,7 +21,7 @@ class ContractSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contract
         fields = '__all__'
-        read_only_fields = ('id_ct', 'is_current')
+        read_only_fields = ('id_ct', 'is_in_force')
 
 class PaymentTermSerializer(serializers.ModelSerializer):  
     fk_id_ct = serializers.PrimaryKeyRelatedField(queryset = Contract.objects.all(), many=False)

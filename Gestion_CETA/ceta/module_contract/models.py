@@ -22,16 +22,15 @@ class Contract(models.Model):
     start_ct = models.DateField()
     end_ct = models.DateField()
     resolution_ct = models.DateField()
-    description_ct = models.TextField()    
-                    #staff_count = models.IntegerField()
-    type_ct = models.CharField(max_length=50)    
+    description_ct = models.TextField(max_length=2000)   
+                    #staff_count = models.IntegerField()  
     uni_area_ct = models.CharField(max_length=50)
     work_area_ct = models.CharField(max_length=50)
                     #value_ct = models.DecimalField(max_digits=10, decimal_places=2)
     profit_margin = models.DecimalField(max_digits=10, decimal_places=2)
                     #net_income = models.DecimalField(max_digits=10, decimal_places=2)
     currency_ct = models.CharField(max_length=10)    
-    is_current = models.BooleanField(default=True)
+    is_in_force = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title_ct
@@ -63,7 +62,7 @@ class PaymentEmployee(models.Model):
 class Expense(models.Model):
     id_expense = models.AutoField(primary_key=True)
     fk_id_payterm = models.ForeignKey(PaymentTerm, on_delete=models.CASCADE) 
-    description_expense = models.CharField(max_length=255)
+    description_expense = models.TextField(max_length=2000)
     amount_expense = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
