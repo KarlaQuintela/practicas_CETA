@@ -92,6 +92,13 @@ def is_valid_account(num):
         result = True
     return result
 
+def is_valid_contract_title(field):
+    result = False
+    reg = reg = r"^[A-Za-z0-9_-./,()]+$"
+    if re.match(reg, field):
+        result = True
+    return result
+
 def get_age_by_id(id):
     now = datetime.now()
     if id[0] in ("0", "1", "2"):

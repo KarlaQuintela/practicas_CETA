@@ -4,27 +4,25 @@ from ceta.module_human_resources.models import Employee
 
 class Client(models.Model):
     id_client = models.AutoField(primary_key=True)
-    name_client = models.CharField(max_length=255)
+    name_client = models.CharField(max_length=60, unique=True)
     address_client = models.CharField(max_length=255)
-    phone_client = models.CharField(max_length=50)
-    email_client = models.EmailField(verbose_name="Email")
-    description_client = models.TextField()
+    phone_client = models.CharField(max_length=15, unique=True)
+    email_client = models.EmailField(verbose_name="Email", unique=True)
+    description_client = models.TextField(max_length=2000)
 
     def __str__(self): 
         return self.name_client
 
 class Contract(models.Model):
     id_ct = models.AutoField(primary_key=True)
-    num_ct = models.CharField(max_length=255, unique=True)
-    title_ct = models.CharField(max_length=255)
+    title_ct = models.CharField(max_length=50, unique=True)
     fk_id_client = models.ForeignKey(Client, on_delete=models.CASCADE)
     manager_ct = models.ForeignKey(Employee, on_delete=models.CASCADE)
     start_ct = models.DateField()
     end_ct = models.DateField()
     resolution_ct = models.DateField()
     description_ct = models.TextField(max_length=2000)   
-                    #staff_count = models.IntegerField()  
-    uni_area_ct = models.CharField(max_length=50)
+                    #staff_count = models.IntegerField()     
     work_area_ct = models.CharField(max_length=50)
                     #value_ct = models.DecimalField(max_digits=10, decimal_places=2)
     profit_margin = models.DecimalField(max_digits=10, decimal_places=2)

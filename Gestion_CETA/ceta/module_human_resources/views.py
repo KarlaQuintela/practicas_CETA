@@ -17,14 +17,14 @@ class CategoryViewSet(
         UpdateModelMixin,
         viewsets.GenericViewSet      
         ):
-    #permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     lookup_field = 'pk'
-"""
+
     def get_queryset(self):        
         return Category.objects.filter(is_active = True)
-"""
+
 
 class EmployeeViewSet(
         ListModelMixin,

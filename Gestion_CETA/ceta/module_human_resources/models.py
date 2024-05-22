@@ -3,7 +3,7 @@ from django.db import models
 
 class Category(models.Model):
     id_cg = models.AutoField(primary_key=True)
-    name_cg = models.CharField(max_length=15, unique=True)
+    name_cg = models.CharField(max_length=60, unique=True)
     hourly_wage_cg = models.FloatField()
     is_active = models.BooleanField(default=True)
 

@@ -3,7 +3,7 @@ from rest_framework import fields
 from rest_framework_json_api import serializers
 from django.core.exceptions import ValidationError
 from collections import OrderedDict
-from Gestion_CETA.utils import validations
+from ceta import validations
 from .models import *
 
 class CategorySerializer(serializers.ModelSerializer):    
@@ -44,6 +44,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
         read_only_fields = ('is_active')
 
     def validate(self, res: OrderedDict):
+            category = res.get('fk_id_cg') 
             id_em = res.get('id_em')        
             name_em = res.get('name_em')
             address_em = res.get('address_em')
@@ -51,6 +52,12 @@ class EmployeeSerializer(serializers.ModelSerializer):
             email_em = res.get('email_em')
             department_em = res.get('department_em')
             num_account_em = res.get('num_account_em')
+
+            # Validate category
+            if not category.is_active:
+                raise serializers.ValidationError({
+                    'fk_id_cg': 'The category related to is not currently active.'
+                })
 
             # Validate id_em
             if not is_valid_id(id_em):
@@ -93,15 +100,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
                         'phone_em': 'This field is not a valid phone number'
                     }) 
 
-            """
-            Email is not required for now if in the future it is, this could be the validation
-            # Validate email_em
-            if is_empty(email_em) or email_em == null:
-                raise serializers.ValidationError({
-                    'email_em': 'This field is required.'
-                })
-            """
-            # Validate name_em
+            # Validate department_em
             if not is_valid_alpha(department_em):
                 raise serializers.ValidationError({
                     'department_em': 'This field should contain only alphabetic characters.'
