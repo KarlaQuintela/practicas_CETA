@@ -22,13 +22,19 @@ class Contract(models.Model):
     end_ct = models.DateField()
     resolution_ct = models.DateField()
     description_ct = models.TextField(max_length=2000)   
-                    #staff_count = models.IntegerField()     
     work_area_ct = models.CharField(max_length=50)
-                    #value_ct = models.DecimalField(max_digits=10, decimal_places=2)
     profit_margin = models.DecimalField(max_digits=10, decimal_places=2)
-                    #net_income = models.DecimalField(max_digits=10, decimal_places=2)
     currency_ct = models.CharField(max_length=10)    
     is_in_force = models.BooleanField(default=True)
+
+    @property
+    def value_ct(self):
+        value = PaymentTerm.objects.filter(fk_id_ct=self.id_ct).aggregate(Sum('total_amount_pay'))
+        return value['total_amount_pay__sum'] or 0
+    
+    @property
+    def net_income(self):  
+        return self.value_ct + ((self.value_ct * self.profit_margin)/100)
 
     def __str__(self):
         return self.title_ct
@@ -40,18 +46,26 @@ class PaymentTerm(models.Model):
     due_year_payterm = models.IntegerField()
     deliver = models.CharField(max_length=50)
     is_billed = models.BooleanField(default=False)
+
+    @property
+    def total_amount_pay(self):
+        total_amount_pay = PaymentEmployee.objects.filter(fk_id_payterm=self.id_payterm).aggregate(Sum('amount_pay'))
+        return total_amount_pay['amount_pay__sum'] or 0
     
     def __str__(self):
         return f"PaymentTerm {self.id_payterm}"
-
+    
 class PaymentEmployee(models.Model):
     id_pay = models.AutoField(primary_key=True)
     fk_id_payterm = models.ForeignKey(PaymentTerm, on_delete=models.CASCADE)
     fk_id_em = models.ForeignKey(Employee, on_delete=models.CASCADE) 
     hours_pay = models.IntegerField()
     task = models.TextField()
-        #amount_pay = models.DecimalField(max_digits=10, decimal_places=2)
     is_delivered = models.BooleanField(default=False)
+
+    @property
+    def amount_pay(self):
+        return (self.fk_id_em.fk_id_cg.hourly_wage_cg * self.hours_pay)
 
     def __str__(self):
         return f"PaymentEmployee {self.id_pay}"
