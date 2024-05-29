@@ -14,7 +14,10 @@ class GeneralView(
     serializer_class = None
     lookup_field = 'pk'
     def get_queryset(self):
-        return self.model.objects.all()
+        value = self.queryset
+        if self.queryset is None:
+            value = self.model.objects.all()
+        return value
 
 class AllowedGeneralView(GeneralView):
     permission_classes = (IsAuthenticated,)
