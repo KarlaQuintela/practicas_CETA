@@ -34,7 +34,7 @@ class TrainingSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({
                 'training_tr': 'This field should contain only alphabetic characters.'
             })
-        if not is_valid_string_field(training_tr):
+        if not is_valid_characters_count(training_tr, 3):
             raise serializers.ValidationError({
                 'training_tr': 'This field should contain more than 3 characters.'
             })
@@ -100,7 +100,7 @@ class ServiceSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({
                 'product_serv': 'This field should contain only alphabetic characters.'
             })
-        if not is_valid_string_field(product_serv):
+        if not is_valid_characters_count(product_serv, 3):
             raise serializers.ValidationError({
                 'product_serv': 'This field should contain more than 3 characters.'
             })

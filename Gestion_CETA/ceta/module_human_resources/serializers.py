@@ -21,7 +21,7 @@ class CategorySerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({
                 'name_cg': 'This field should contain only alphabetic characters.'
             })
-        if not is_valid_string_field(name_cg):
+        if not is_valid_characters_count(name_cg, 3):
             raise serializers.ValidationError({
                 'name_cg': 'This field should contain more than 3 characters.'
             })

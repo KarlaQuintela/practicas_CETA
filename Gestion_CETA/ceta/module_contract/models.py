@@ -1,6 +1,7 @@
 # module_contract/models.py
 from django.db import models
 from ceta.module_human_resources.models import Employee
+from datetime import timedelta
 
 class Client(models.Model):
     id_client = models.AutoField(primary_key=True)
@@ -25,7 +26,13 @@ class Contract(models.Model):
     work_area_ct = models.CharField(max_length=50)
     profit_margin = models.DecimalField(max_digits=10, decimal_places=2)
     currency_ct = models.CharField(max_length=10)    
-    is_in_force = models.BooleanField(default=True)
+
+    @property
+    def is_in_force(self):
+        in_force = True
+        if end_ct < datetime.now():
+            in_force = False
+        return in_force
 
     @property
     def value_ct(self):
@@ -44,7 +51,7 @@ class PaymentTerm(models.Model):
     fk_id_ct = models.ForeignKey(Contract, on_delete=models.CASCADE) 
     due_month_payterm = models.IntegerField()
     due_year_payterm = models.IntegerField()
-    deliver = models.CharField(max_length=50)
+    deliver = models.CharField(max_length=250)
     is_billed = models.BooleanField(default=False)
 
     @property
