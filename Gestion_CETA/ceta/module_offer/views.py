@@ -1,35 +1,12 @@
 # module_offer/views.py
-from json import JSONDecodeError
-from django.http import JsonResponse
-from rest_framework.parsers import JSONParser
-from rest_framework.permissions import IsAuthenticated
-from rest_framework import viewsets, status
-from rest_framework.response import Response
-from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin, UpdateModelMixin, DestroyModelMixin
- 
+
+from ceta.module_generic.views import GeneralView
 from .serializers import *
 from .models import *
 
-class TrainingViewSet(
-        ListModelMixin,
-        RetrieveModelMixin, 
-        CreateModelMixin,
-        UpdateModelMixin,
-        viewsets.GenericViewSet      
-        ):
-    #permission_classes = (IsAuthenticated,)
-    queryset = Training.objects.all()
+class TrainingViewSet(GeneralView):
+    model = Training
     serializer_class = TrainingSerializer
-    lookup_field = 'pk'
-
-class ServiceViewSet(
-        ListModelMixin,
-        RetrieveModelMixin, 
-        CreateModelMixin,
-        UpdateModelMixin,
-        viewsets.GenericViewSet      
-        ):
-    #permission_classes = (IsAuthenticated,)
-    queryset = Service.objects.all()
+class ServiceViewSet(GeneralView):
+    model = Service
     serializer_class = ServiceSerializer
-    lookup_field = 'pk'
