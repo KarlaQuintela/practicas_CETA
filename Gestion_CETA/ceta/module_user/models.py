@@ -14,6 +14,6 @@ class Role(models.Model):
     id_role = models.AutoField(primary_key=True)
     name_role = models.CharField(max_length=255)
     description_role = models.TextField()    
-
+    
     def __str__(self):
         return self.name_role
