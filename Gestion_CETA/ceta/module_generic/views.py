@@ -1,3 +1,4 @@
+# module_generic/views.py
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin, UpdateModelMixin, DestroyModelMixin
@@ -10,7 +11,6 @@ class GeneralView(
         UpdateModelMixin,
         viewsets.GenericViewSet
     ):
-
     model:Model = None
     serializer_class = None
     lookup_field = 'pk'
@@ -23,3 +23,8 @@ class GeneralView(
 class AllowedGeneralView(GeneralView):
     permission_classes = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)
+
+class LogicDelete(DestroyModelMixin):
+    def perform_destroy(self, instance):
+        instance.is_active = False
+        instance.save()
