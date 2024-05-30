@@ -1,6 +1,6 @@
 # module_user/views.py
 
-from ceta.module_generic.views import GeneralView
+from ceta.module_generic.views import AllowedGeneralView, GeneralView
 from rest_framework.mixins import DestroyModelMixin
 from .serializers import *
 from .models import *
@@ -52,9 +52,9 @@ def sign_in(request):
         send_mail(user.get_email_field_name)
     return response
 
-class UserViewSet(GeneralView, DestroyModelMixin):
+class UserViewSet(AllowedGeneralView, DestroyModelMixin):
     model = User
     serializer_class = UserSerializer
-class RoleViewSet(GeneralView, DestroyModelMixin):
+class RoleViewSet(AllowedGeneralView, DestroyModelMixin):
     model = Role
     serializer_class = RoleSerializer
