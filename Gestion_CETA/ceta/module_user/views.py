@@ -9,6 +9,8 @@ from django.shortcuts import render, redirect,get_object_or_404
 
 from .models import User, Role
 
+from ceta.email_sender import send_mail
+
 @api_view(['GET'])
 def login(request):
     user = get_object_or_404(User,username=request.data['username'])
@@ -16,7 +18,7 @@ def login(request):
     if not user.check_password(request.data['password']):
         response = Response({'error': 'invalid password'},status=status.HTTP_400_BAD_REQUEST)
     else:
-        token,created = Token.objects.get_or_create(user=user)
+        token,_ = Token.objects.get_or_create(user=user)
         serialized_user = UserSerializer(instance=user)
         response = Response({
             'token': token.key, 
@@ -41,7 +43,9 @@ def sign_in(request):
         "user": user_data.data
         }
         response.status_code = status.HTTP_201_CREATED
+        send_mail(user.get_email_field_name)
     return response
+
 
 """
 
