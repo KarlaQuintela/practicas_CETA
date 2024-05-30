@@ -1,7 +1,8 @@
 # module_contract/models.py
+import datetime
 from django.db import models
 from ceta.module_human_resources.models import Employee
-from datetime import timedelta
+
 
 class Client(models.Model):
     id_client = models.AutoField(primary_key=True)
@@ -30,7 +31,7 @@ class Contract(models.Model):
     @property
     def is_in_force(self):
         in_force = True
-        if end_ct < datetime.now():
+        if self.end_ct < datetime.now():
             in_force = False
         return in_force
 

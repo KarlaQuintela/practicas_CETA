@@ -1,7 +1,7 @@
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin, UpdateModelMixin, DestroyModelMixin
 from rest_framework import viewsets
-
+from django.db.models import Model
 class GeneralView(
         ListModelMixin,
         RetrieveModelMixin, 
@@ -10,7 +10,7 @@ class GeneralView(
         viewsets.GenericViewSet
     ):
 
-    model = None
+    model:Model = None
     serializer_class = None
     lookup_field = 'pk'
     def get_queryset(self):

@@ -12,7 +12,7 @@ class ClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
         fields = '__all__'
-        read_only_fields = ('id_client')
+        read_only_fields = ('id_client',)
 
     def validate(self, res: OrderedDict):
         name_client = res.get('name_client')  
@@ -66,7 +66,7 @@ class ContractSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contract
         fields = '__all__'
-        read_only_fields = ('id_ct')
+        read_only_fields = ('id_ct',)
     
     def validate(self, res: OrderedDict):   
         manager = res.get('manager_ct')     

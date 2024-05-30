@@ -41,7 +41,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
         fields = '__all__'      
-        read_only_fields = ('is_active')
+        read_only_fields = ('is_active',)
 
     def validate(self, res: OrderedDict):
             category = res.get('fk_id_cg') 

@@ -1,12 +1,12 @@
 from django.urls import path, include
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
-import itertools
 
 import ceta.module_human_resources.url_parameters  as human_resources
 import ceta.module_contract.url_parameters as contract
 import ceta.module_offer.url_parameters as offer
 import ceta.module_accounting.url_parameters as accounting
+
 
 router = routers.DefaultRouter()
 router.register

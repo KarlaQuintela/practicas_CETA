@@ -12,7 +12,7 @@ class BillSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bill
         fields = '__all__'
-        read_only_fields = ('id_bill')
+        read_only_fields = ('id_bill',)
 
 class ReceiptSerializer(serializers.ModelSerializer):  
     fk_id_bill = serializers.PrimaryKeyRelatedField(queryset = Bill.objects.all(), many=False)
@@ -20,7 +20,7 @@ class ReceiptSerializer(serializers.ModelSerializer):
     class Meta:
         model = Receipt
         fields = '__all__'
-        read_only_fields = ('id_rec')
+        read_only_fields = ('id_rec',)
 
 class RemunerationSerializer(serializers.ModelSerializer):  
     fk_id_bill = serializers.PrimaryKeyRelatedField(queryset = Bill.objects.all(), many=False)
@@ -28,4 +28,4 @@ class RemunerationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Remuneration
         fields = '__all__'
-        read_only_fields = ('id_rem')
+        read_only_fields = ('id_rem',)
