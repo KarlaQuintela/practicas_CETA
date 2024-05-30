@@ -1,7 +1,6 @@
 from rest_framework import fields 
 from rest_framework_json_api import serializers
 
-from .exceptions import *
 from .models import *
 from ceta.module_accounting.models import *
 from ceta.module_contract.models import *

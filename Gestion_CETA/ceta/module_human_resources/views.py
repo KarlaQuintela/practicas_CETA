@@ -10,6 +10,6 @@ class CategoryViewSet(AllowedGeneralView):
         return Category.objects.filter(is_active = True)
 
 
-class EmployeeViewSet(GeneralView):
+class EmployeeViewSet(AllowedGeneralView):
     model = Employee
     serializer_class = EmployeeSerializer

@@ -1,14 +1,11 @@
 # module_user/models.py
 from django.db import models
-
-class User(models.Model):
-    id_user = models.AutoField(primary_key=True)
+from django.contrib.auth import models
+class User(models.User):
     fk_id_role = models.ForeignKey('Role', on_delete=models.CASCADE)
-    name_user = models.CharField(max_length=255)
-    password_user = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.name_user
+        return self.username
 
 class Role(models.Model):
     id_role = models.AutoField(primary_key=True)
