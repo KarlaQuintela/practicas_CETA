@@ -3,7 +3,7 @@ from rest_framework import fields
 from rest_framework_json_api import serializers
 from django.core.exceptions import ValidationError
 from collections import OrderedDict
-from ceta import validations
+from ceta.validations import *
 from .models import *
 
 class RoleSerializer(serializers.ModelSerializer):    

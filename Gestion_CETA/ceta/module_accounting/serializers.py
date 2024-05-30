@@ -2,7 +2,7 @@
 from rest_framework import fields 
 from rest_framework_json_api import serializers
 from collections import OrderedDict
-from ceta import validations
+from ceta.validations import *
 from .models import *
 from ceta.module_contract.models import PaymentTerm
 

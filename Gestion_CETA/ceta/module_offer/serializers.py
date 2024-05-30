@@ -3,7 +3,7 @@ from rest_framework import fields
 from rest_framework_json_api import serializers
 from collections import OrderedDict
 from datetime import timedelta
-from ceta import validations
+from ceta.validations import *
 from .models import *
 from ceta.module_contract.models import Contract
 
@@ -45,7 +45,7 @@ class TrainingSerializer(serializers.ModelSerializer):
                 'hours_tr': 'This field should be greater than 0.'
             })
         if hours_tr > ((end_tr - start_tr).days * 24):
-            raise ValidationError({
+            raise serializers.ValidationError({
                 'hours_tr': 'Hours must not exceed the amount of hours between the start and end date.'
             })
 
@@ -57,17 +57,17 @@ class TrainingSerializer(serializers.ModelSerializer):
         
         # Validate start_tr
         if start_tr < contract.start_ct:
-            raise ValidationError({
+            raise serializers.ValidationError({
                 'start_tr': 'Start date must be later than the contract start date.'
             })
         
         # Validate end_tr
         if end_tr > contract.end_ct:
-            raise ValidationError({
+            raise serializers.ValidationError({
                 'end_tr': 'End date must be before the contract end date.'
             })
         if end_tr <= start_tr:
-            raise ValidationError({
+            raise serializers.ValidationError({
                 'end_tr': 'End date must be later than the start date.'
             })        
         

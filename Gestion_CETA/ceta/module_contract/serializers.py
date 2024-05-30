@@ -1,9 +1,10 @@
 # module_contract/serializers.py
 from rest_framework import fields 
 from rest_framework_json_api import serializers
+from rest_framework_json_api.serializers import ValidationError
 from collections import OrderedDict
 from datetime import timedelta
-from ceta import validations
+from ceta.validations import *
 from .models import *
 from ceta.module_human_resources.models import Employee
 
@@ -52,7 +53,7 @@ class ClientSerializer(serializers.ModelSerializer):
                 }) 
             
         # Validate email_client
-        if  email_client == null or is_empty(email_client):
+        if  email_client == None or is_empty(email_client):
             raise serializers.ValidationError({
                 'email_client': 'This field is required.'
             })
