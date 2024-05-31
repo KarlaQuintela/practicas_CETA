@@ -21,7 +21,7 @@ def build_email(user_mail, emissor_mail, subject, content):
 
 
 def email_config():
-    #password: 
+    #password: opna slcm celp dump 
     emissor_mail, emissor_password = ('cetacorreoprueba@gmail.com','cetacorreoprueba@gmail.com')
     subject = 'Bienvenido a CETA'
     content = """
