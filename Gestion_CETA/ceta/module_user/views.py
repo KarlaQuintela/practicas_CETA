@@ -35,8 +35,6 @@ def login(request):
 def sign_in(request):
     #TODO add role
     json_request = json.loads(request.body)
-    role = Role.objects.filter(name_role=json_request['fk_id_role']).get()
-    json_request['fk_id_role'] = role.id_role
     user_data = UserLoginSerializer(data=json_request)
     response = Response({})
     print(json_request)

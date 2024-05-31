@@ -35,6 +35,7 @@ class UserSerializer(serializers.ModelSerializer):
         read_only_fields = ('id_user',)
 
 class UserLoginSerializer(serializers.ModelSerializer):
+    fk_id_role = serializers.PrimaryKeyRelatedField(queryset = Role.objects.all(), many=False)
     class Meta:
         model = User
         fields = ('username','password','email','fk_id_role')      
