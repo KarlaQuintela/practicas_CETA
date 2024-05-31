@@ -1,10 +1,11 @@
 # module_user/serializers.py
 from rest_framework import fields 
-from rest_framework_json_api import serializers
 from django.core.exceptions import ValidationError
+from rest_framework_json_api import serializers
 from collections import OrderedDict
 from ceta.validations import *
 from .models import *
+from .serializers import *
 
 class RoleSerializer(serializers.ModelSerializer):    
     class Meta:

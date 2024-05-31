@@ -4,12 +4,10 @@ from ceta.module_generic.views import AllowedGeneralView, GeneralView
 from rest_framework.mixins import DestroyModelMixin
 from .serializers import *
 from .models import *
-
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework import status
-from serializers import UserSerializer,RoleSerializer
 
 from django.shortcuts import render, redirect,get_object_or_404
 

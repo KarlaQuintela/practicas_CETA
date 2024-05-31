@@ -1,7 +1,8 @@
 # module_user/models.py
 from django.db import models
-from django.contrib.auth import models
-class User(models.User):
+from django.contrib.auth import models as m
+
+class User(m.User):    
     fk_id_role = models.ForeignKey('Role', on_delete=models.CASCADE)
 
     def __str__(self):

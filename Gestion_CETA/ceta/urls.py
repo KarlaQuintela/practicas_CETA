@@ -6,7 +6,7 @@ import ceta.module_human_resources.url_parameters  as human_resources
 import ceta.module_contract.url_parameters as contract
 import ceta.module_offer.url_parameters as offer
 import ceta.module_accounting.url_parameters as accounting
-
+from .views import pdfExport
 
 router = routers.DefaultRouter()
 router.register
@@ -19,5 +19,6 @@ for route in modules:
 
 urlpatterns = router.urls
 urlpatterns +=[     
-    path('api-token-auth/', obtain_auth_token), #access to token auth    
+    path('api-token-auth/', obtain_auth_token), #access to token auth 
+    path('pdf', pdfExport, name="pdfExport"),    
 ]
