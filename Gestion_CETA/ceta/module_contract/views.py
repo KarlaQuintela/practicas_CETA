@@ -13,7 +13,7 @@ class ContractViewSet(AllowedGeneralView, LogicDelete):
     model = Contract
     serializer_class = ContractSerializer
 
-class PaymentTermViewSet(AllowedGeneralView):
+class PaymentTermViewSet(AllowedGeneralView, LogicDelete):
     model = PaymentTerm
 
 class PaymentEmployeeViewSet(AllowedGeneralView, LogicDelete):

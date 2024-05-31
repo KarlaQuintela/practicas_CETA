@@ -47,7 +47,7 @@ class ReportPendingSerializer(serializers.Serializer):
     id_bill = serializers.IntegerField()
     month_bill = serializers.IntegerField()
     number_payterm = serializers.IntegerField(source='fk_id_payterm.id_payterm')
-    deliver_payterm = serializers.CharField(source='fk_id_payterm.deliver')
+    amount_payterm = serializers.FloatField(source='fk_id_payterm.total_amount_pay')
     contract = serializers.CharField(source='fk_id_payterm.fk_id_ct.title_ct')
     client = serializers.CharField(source='fk_id_payterm.fk_id_ct.fk_id_client.name_client')
 
@@ -60,7 +60,7 @@ class ReportPendingSerializer(serializers.Serializer):
             'id_bill': instance.id_bill,
             'month_bill': instance.month_bill,
             'number_payterm': payterm.id_payterm,
-            'deliver_payterm': payterm.deliver,
+            'amount_payterm': payterm.total_amount_pay,
             'contract': contract.title_ct,
             'client': client.name_client,
         }    
