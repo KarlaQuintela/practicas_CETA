@@ -15,7 +15,7 @@ from .models import User, Role
 
 from ceta.email_sender import send_mail
 
-@api_view(['GET'])
+@api_view(['POST'])
 def login(request):
     user = get_object_or_404(User,username=request.data['username'])
     response = Response({})
@@ -32,8 +32,6 @@ def login(request):
 @api_view(['POST'])
 def sign_in(request):
     #TODO add role
-    # role = Role.objects.filter(name_role=request.data.role).get('id_role')
-    # request_data: dict = {}
     user_data = UserSerializer(data=request.data)
     response = Response({user_data.errors},status=status.HTTP_400_BAD_REQUEST)
     if(user_data.is_valid()):

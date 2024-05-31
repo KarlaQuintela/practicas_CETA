@@ -22,7 +22,7 @@ def build_email(user_mail, emissor_mail, subject, content):
 
 def email_config():
     #password: 
-    emissor_mail, emissor_password = ('cetacorreoprueba@gmail.com',os.environ.get('EMAIL_PASSWORD'))
+    emissor_mail, emissor_password = ('cetacorreoprueba@gmail.com','cetacorreoprueba@gmail.com')
     subject = 'Bienvenido a CETA'
     content = """
         Has sido registrado correctamente en la aplicación. Entre a este enlace: http://localhost:5137 para ingresar su usuario y contraseña satisfactoriamente
