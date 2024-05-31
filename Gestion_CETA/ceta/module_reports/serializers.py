@@ -68,7 +68,7 @@ class ReportPendingSerializer(serializers.Serializer):
 
 class ReportPendingDeliverySerializer(serializers.Serializer):
     id_pay = serializers.IntegerField()
-    task = serializers.TextField()
+    task = serializers.CharField()
     hours_pay = serializers.IntegerField()
     number_payterm = serializers.IntegerField(source='fk_id_payterm.id_payterm')
     deliver_payterm = serializers.CharField(source='fk_id_payterm.deliver')

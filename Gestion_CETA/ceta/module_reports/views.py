@@ -10,7 +10,7 @@ from .serializers import *
 from ceta.module_contract.models import Contract, PaymentEmployee
 from ceta.module_accounting.models import Bill
 
-class ReportsViewset(viewsets.GenericViewSet):    
+class ReportsViewset(GenericViewSet):    
     
      def clients_contracts(self, request, id_client):
         """Reporte de Contratos por Cliente: Este reporte proporciona una lista de todos los 
