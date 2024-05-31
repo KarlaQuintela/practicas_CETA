@@ -1,12 +1,40 @@
 from rest_framework import viewsets
-from django.db.models import Q
 from rest_framework.response import Response
 from .serializers import *
-from ceta.module_contract.models import Contract
+from ceta.module_contract.models import Contract, PaymentEmployee
+from ceta.module_accounting.models import Bill
 
-class ReportsViewset(viewsets.GenericViewSet):
-     def clients_contracts(self, request, id):
-        contracts = Contract.objects.select_related('Client').filter(fk_id_client=id)
-        serializer = ContractSerializer(contracts, many=True)
+class ReportsViewset(viewsets.GenericViewSet):    
+    
+     def clients_contracts(self, request, id_client):
+        """Reporte de Contratos por Cliente: Este reporte proporciona una lista de todos los 
+        contratos asociados a un cliente específico."""       
+        contracts = Contract.objects.select_related('Client').filter(fk_id_client=id_client)
+        serializer = Report_Clients_ContractSerializer(contracts, many=True)
         return Response(serializer.data)
-       
+
+     def month_bills(self, request, month):
+        """Reporte de Facturación Mensual: Incluye detalles de todas las facturas generadas 
+        en un mes específico, con información del cliente, el contrato asociado, 
+        los trabajadores involucrados y los entregables."""       
+        bills = Bill.objects.filter(month_bill=month)
+        serializer = ReportBillSerializer(bills, many=True)
+        return Response(serializer.data)
+     
+     def pending_payments(self, request):
+        """Reporte de Pagos Pendientes: Este reporte muestra los pagos pendientes 
+        de los clientes, incluyendo detalles de la factura, el plazo asociado y el contrato."""
+        bills = Bill.objects.filter(is_paid==False)
+        serializer = ReportPendingSerializer(bills, many=True)
+        return Response(serializer.data)
+
+     def pending_delivery(self, request):
+        """Reporte de Entregables Pendientes: Este reporte muestra los entregables pendientes 
+        incluyendo detalles del plazo asociado, el contrato y el trabajador."""
+        delivers = PaymentEmployee.objects.filter(is_delivered==False)
+        serializer = ReportPendingDeliverySerializer(delivers, many=True)
+        return Response(serializer.data)
+    
+    
+
+
