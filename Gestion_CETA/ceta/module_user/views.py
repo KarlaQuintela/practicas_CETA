@@ -1,5 +1,6 @@
 # module_user/views.py
 
+import json
 from ceta.module_generic.views import AllowedGeneralView, GeneralView
 from rest_framework.mixins import DestroyModelMixin
 from .serializers import *
@@ -17,9 +18,10 @@ from ceta.email_sender import send_mail
 
 @api_view(['POST'])
 def login(request):
-    user = get_object_or_404(User,username=request.data['username'])
+    json_request = json.loads(request.body)
+    user = get_object_or_404(User,username=json_request['username'])
     response = Response({})
-    if not user.check_password(request.data['password']):
+    if not user.check_password(json_request['password']):
         response = Response({'error': 'invalid password'},status=status.HTTP_400_BAD_REQUEST)
     else:
         token,_ = Token.objects.get_or_create(user=user)
@@ -32,20 +34,22 @@ def login(request):
 @api_view(['POST'])
 def sign_in(request):
     #TODO add role
-    user_data = UserSerializer(data=request.data)
-    response = Response({user_data.errors},status=status.HTTP_400_BAD_REQUEST)
+    json_request = json.loads(request.body)
+    role = Role.objects.filter(name_role=json_request['fk_id_role']).get()
+    json_request['fk_id_role'] = role.id_role
+    user_data = UserLoginSerializer(data=json_request)
+    response = Response({})
+    print(json_request)
     if(user_data.is_valid()):
         user_data.save()
         user = User.objects.get(username=user_data.data['username'])
         user.set_password(user_data.data['password'])
         user.save()
         token = Token.objects.create(user=user)
-        response.data = {
-        'token': token.key,
-        "user": user_data.data
-        }
-        response.status_code = status.HTTP_201_CREATED
+        response.data = Response({'token': token.key,"user": user_data.data},status.HTTP_201_CREATED)
         send_mail(user.get_email_field_name)
+    else:
+        response = Response(user_data.errors,status=status.HTTP_400_BAD_REQUEST)
     return response
 
 class UserViewSet(AllowedGeneralView, DestroyModelMixin):
