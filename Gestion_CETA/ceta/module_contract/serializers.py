@@ -13,7 +13,7 @@ class ClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
         fields = '__all__'
-        read_only_fields = ('id_client',)
+        read_only_fields = ('id_client', 'is_active',)
 
     def validate(self, res: OrderedDict):
         name_client = res.get('name_client')  
@@ -67,7 +67,7 @@ class ContractSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contract
         fields = '__all__'
-        read_only_fields = ('id_ct',)
+        read_only_fields = ('id_ct', 'is_active',)
     
     def validate(self, res: OrderedDict):   
         manager = res.get('manager_ct')     
@@ -136,7 +136,7 @@ class PaymentTermSerializer(serializers.ModelSerializer):
     class Meta:
         model = PaymentTerm
         fields = '__all__'
-        read_only_fields = ('id_payterm', 'is_billed')
+        read_only_fields = ('id_payterm', 'is_active',)
     
     def validate(self, res: OrderedDict):
         contract = res.get('fk_id_ct')   
@@ -178,7 +178,7 @@ class PaymentEmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = PaymentEmployee
         fields = '__all__'
-        read_only_fields = ('id_pay','is_delivered')
+        read_only_fields = ('id_pay', 'is_active',)
     
     def validate(self, res: OrderedDict):
         task = res.get('task')  

@@ -10,6 +10,7 @@ class Client(models.Model):
     phone_client = models.CharField(max_length=15, unique=True)
     email_client = models.EmailField(verbose_name="Email", unique=True)
     description_client = models.TextField(max_length=2000)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self): 
         return self.name_client
@@ -25,7 +26,8 @@ class Contract(models.Model):
     description_ct = models.TextField(max_length=2000)   
     work_area_ct = models.CharField(max_length=50)
     profit_margin = models.DecimalField(max_digits=10, decimal_places=2)
-    currency_ct = models.CharField(max_length=10)    
+    currency_ct = models.CharField(max_length=10)
+    is_active = models.BooleanField(default=True)    
 
     @property
     def is_in_force(self):
@@ -53,6 +55,7 @@ class PaymentTerm(models.Model):
     due_year_payterm = models.IntegerField()
     deliver = models.CharField(max_length=250)
     is_billed = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     @property
     def total_amount_pay(self):
@@ -69,6 +72,7 @@ class PaymentEmployee(models.Model):
     hours_pay = models.IntegerField()
     task = models.TextField()
     is_delivered = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     @property
     def amount_pay(self):
@@ -76,14 +80,3 @@ class PaymentEmployee(models.Model):
 
     def __str__(self):
         return f"PaymentEmployee {self.id_pay}"
-
-"""
-class Expense(models.Model):
-    id_expense = models.AutoField(primary_key=True)
-    fk_id_payterm = models.ForeignKey(PaymentTerm, on_delete=models.CASCADE) 
-    description_expense = models.TextField(max_length=2000)
-    amount_expense = models.DecimalField(max_digits=10, decimal_places=2)
-
-    def __str__(self):
-        return f"Expense {self.id_expense}"
-"""
