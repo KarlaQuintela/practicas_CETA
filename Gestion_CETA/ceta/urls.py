@@ -27,5 +27,6 @@ urlpatterns +=[
     path('month_bills/<int:month>/', ReportsViewset.as_view({'get': 'month_bills'}), name='month_bills'),
     path('pending_payments/', ReportsViewset.as_view({'get': 'pending_payments'}), name='pending_payments'),
     path('pending_delivery/', ReportsViewset.as_view({'get': 'pending_delivery'}), name='pending_delivery'),
+    path('generate_pdf/<str:json_data>/', ReportsViewset.as_view({'get': 'generate_pdf'}), name='generate_pdf'),
 
 ]   

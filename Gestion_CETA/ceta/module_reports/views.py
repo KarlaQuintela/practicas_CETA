@@ -1,5 +1,11 @@
-from rest_framework import viewsets
 from rest_framework.response import Response
+from django.http import HttpResponse
+from rest_framework.viewsets import GenericViewSet
+
+from reportlab.pdfgen import canvas
+from django.http import JsonResponse
+import json
+
 from .serializers import *
 from ceta.module_contract.models import Contract, PaymentEmployee
 from ceta.module_accounting.models import Bill
@@ -34,7 +40,23 @@ class ReportsViewset(viewsets.GenericViewSet):
         delivers = PaymentEmployee.objects.filter(is_delivered==False)
         serializer = ReportPendingDeliverySerializer(delivers, many=True)
         return Response(serializer.data)
-    
+
+     def generate_pdf(request, json_data):
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="generated_pdf.pdf"'
+        data = json.loads(json_data)
+        p = canvas.Canvas(response)
+        p.drawString(100, 800, "Generated PDF from JSON:")
+        
+        y_position = 780
+        for key, value in data.items():
+           p.drawString(100, y_position, f"{key}: {value}")
+           y_position -= 20
+        p.showPage()
+        p.save()
+        return response
+
+
     
 
 

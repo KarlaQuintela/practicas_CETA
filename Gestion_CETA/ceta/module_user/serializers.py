@@ -27,7 +27,6 @@ class RoleSerializer(serializers.ModelSerializer):
         
         return res
 
-
 class UserSerializer(serializers.ModelSerializer):
     fk_id_role = serializers.PrimaryKeyRelatedField(queryset = Role.objects.all(), many=False)
     class Meta:
