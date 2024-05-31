@@ -30,31 +30,31 @@ class ReportsViewset(GenericViewSet):
      def pending_payments(self, request):
         """Reporte de Pagos Pendientes: Este reporte muestra los pagos pendientes 
         de los clientes, incluyendo detalles de la factura, el plazo asociado y el contrato."""
-        bills = Bill.objects.filter(is_paid==False)
+        bills = Bill.objects.filter(is_paid=False)
         serializer = ReportPendingSerializer(bills, many=True)
         return Response(serializer.data)
 
      def pending_delivery(self, request):
         """Reporte de Entregables Pendientes: Este reporte muestra los entregables pendientes 
         incluyendo detalles del plazo asociado, el contrato y el trabajador."""
-        delivers = PaymentEmployee.objects.filter(is_delivered==False)
+        delivers = PaymentEmployee.objects.filter(is_delivered=False)
         serializer = ReportPendingDeliverySerializer(delivers, many=True)
         return Response(serializer.data)
 
-     def generate_pdf(request, json_data):
-        response = HttpResponse(content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename="generated_pdf.pdf"'
-        data = json.loads(json_data)
-        p = canvas.Canvas(response)
-        p.drawString(100, 800, "Generated PDF from JSON:")
-        
-        y_position = 780
-        for key, value in data.items():
-           p.drawString(100, y_position, f"{key}: {value}")
-           y_position -= 20
-        p.showPage()
-        p.save()
-        return response
+   
+def generate_pdf(request):
+   response = HttpResponse(content_type="application/pdf")
+   response["Content-Disposition"] = 'attachment; filename="generated_report.pdf"'
+   data = json.loads(request.body)
+   p = canvas.Canvas(response)
+   p.drawString(100, 800, "")
+   y_position = 780
+   for key, value in data.items():
+      p.drawString(100, y_position, f"{key}: {value}")
+      y_position -= 20
+   p.showPage()
+   p.save()
+   return response
 
 
     
