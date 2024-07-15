@@ -1,6 +1,6 @@
 # module_generic/views.py
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.authentication import TokenAuthentication
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin, UpdateModelMixin, DestroyModelMixin
 from rest_framework import viewsets
 from django.db.models import Model
@@ -22,7 +22,7 @@ class GeneralView(
 
 class AllowedGeneralView(GeneralView):
     permission_classes = (IsAuthenticated,)
-    authentication_classes = (TokenAuthentication,)
+    authentication_classes = (JWTAuthentication,)
 
 class LogicDelete(DestroyModelMixin):
     def perform_destroy(self, instance):

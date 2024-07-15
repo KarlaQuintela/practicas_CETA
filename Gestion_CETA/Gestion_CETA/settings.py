@@ -1,3 +1,4 @@
+from datetime import timedelta
 from pathlib import Path
 from dotenv import load_dotenv
 import os
@@ -35,7 +36,8 @@ INSTALLED_APPS = [
     'django_filters', #used with DRF
     'corsheaders', #django-cors-headers
     'rest_framework.authtoken', #enable token authentication
-    
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
     #My Apps
     'ceta.apps.CetaConfig',      
 ]
@@ -135,27 +137,42 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 REST_FRAMEWORK = {
-    'EXCEPTION_HANDLER': 'rest_framework_json_api.exceptions.exception_handler',
-    'DEFAULT_PARSER_CLASSES': (
-        'rest_framework_json_api.parsers.JSONParser',
-    ),
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ],
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework_json_api.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer'
-    ),
-    'DEFAULT_METADATA_CLASS': 'rest_framework_json_api.metadata.JSONAPIMetadata',
-    'DEFAULT_FILTER_BACKENDS': (
-        'rest_framework_json_api.filters.QueryParameterValidationFilter',
-        'rest_framework_json_api.filters.OrderingFilter',
-        'rest_framework_json_api.django_filters.DjangoFilterBackend',
-        'rest_framework.filters.SearchFilter',
-    ),
-    'SEARCH_PARAM': 'filter[search]',
-    'TEST_REQUEST_RENDERER_CLASSES': (
-        'rest_framework_json_api.renderers.JSONRenderer',
-    ),
-    'TEST_REQUEST_DEFAULT_FORMAT': 'vnd.api+json' 
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=180),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=50),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'UPDATE_LAST_LOGIN': False,
+
+    'ALGORITHM': 'HS256',
+
+    'VERIFYING_KEY': None,
+    'AUDIENCE': None,
+    'ISSUER': None,
+    'JWK_URL': None,
+    'LEEWAY': 0,
+
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+    'USER_AUTHENTICATION_RULE': 'rest_framework_simplejwt.authentication.default_user_authentication_rule',
+
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
+    'TOKEN_USER_CLASS': 'rest_framework_simplejwt.models.TokenUser',
+    
+    "TOKEN_OBTAIN_SERIALIZER": "ceta.module_token.serializers.MyTokenObtainPairSerializer",
+
+    'JTI_CLAIM': 'jti',
+
+    'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
+    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }

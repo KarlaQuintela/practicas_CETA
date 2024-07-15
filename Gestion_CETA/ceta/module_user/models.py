@@ -1,17 +1,11 @@
 # module_user/models.py
-from django.db import models
-from django.contrib.auth import models as m
-
-class User(m.User):    
-    fk_id_role = models.ForeignKey('Role', on_delete=models.CASCADE)
-
+from django.contrib.auth.models import User,Group
+class User(User):    
+    REQUIRED_FIELDS = []
     def __str__(self):
         return self.username
 
-class Role(models.Model):
-    id_role = models.AutoField(primary_key=True)
-    name_role = models.CharField(max_length=255)
-    description_role = models.TextField()    
+class Role(Group):
     
     def __str__(self):
         return self.name_role
